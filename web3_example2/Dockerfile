@@ -1,6 +1,20 @@
 FROM nickistre/ubuntu-lamp
-RUN apt-get update && apt-get dist-upgrade -y
+
+
 ADD apache2.conf /etc/apache2/apache2.conf
+
 EXPOSE 80
 EXPOSE 22
-CMD ["/tmp/run.sh"]
+
+RUN sed -i "s/http:\/\/archive.ubuntu.com/http:\/\/mirrors.aliyun.com/g" /etc/apt/sources.list && \
+    apt-get update && \
+    service ssh start && \
+    a2enmod rewrite && \
+    service apache2 start && \
+    rm -f /var/www/html/* && \
+    chown www-data:www-data /var/www/html/ -R && \
+    useradd ctf && \
+    echo ctf:moxiaoxi666 | chpasswd && \
+    sleep 2
+
+COPY ./html/index.php /var/www/html/
