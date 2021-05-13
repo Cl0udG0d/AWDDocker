@@ -1,0 +1,59 @@
+{% extends "layout.html" %}
+
+{% block login %}
+        <!-- 登陆框开始 -->
+        <div class="panel panel-primary topBox" style="height: 220px;">
+                <div class="panel-heading">
+                    <h3 class="panel-title">教务处账号登录</h3>
+                </div>
+                <div class="panel-body">
+                    <form class="form-horizontal" id="Form" method="post">
+                        <div class="form-group">
+                            <div class="input-group">
+                                <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
+                                <input type="text" class="form-control" placeholder="学号" id="uid" name="username">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="input-group">
+                                <span class="input-group-addon"><span class="glyphicon glyphicon-edit"></span></span>
+                                <input type="password" class="form-control" placeholder="密码" id="password" name="password">
+                            </div>
+                        </div>
+                        <input type="hidden" name="_xsrf" value="{{ _xsrf }}" id="xsrf">
+                        <div class="form-group">
+                            <a class="btn btn-primary pull-left" id="register">注册</a>
+                            <a class="btn btn-primary pull-right" id="login">登录</a>
+                        </div>
+
+                        <!-- 用户名或密码不能为空的模态框 -->
+                        <div class="modal fade" id="emptyUserPassword">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <span class="close" data-dismiss="modal">×</span>
+                                        <h4 class="modal-title">Error</h4>
+                                    </div>
+                                    <div class="modal-body"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        {% if Login_error or reg_error %}
+                        <div class="modal fade" id="Error">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <span class="close" data-dismiss="modal">×</span>
+                                        <h4 class="modal-title">Error</h4>
+                                    </div>
+                                    <div class="modal-body">{{ Login_error or reg_error }}</div>
+                                </div>
+                            </div>
+                        </div>
+                        {% endif %}
+                    </form>
+                </div>
+            </div>
+            <!-- 登陆框结束 -->
+{% endblock %}

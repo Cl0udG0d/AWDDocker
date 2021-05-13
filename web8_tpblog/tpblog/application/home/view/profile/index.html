@@ -1,0 +1,154 @@
+{extend name="layout" /}
+
+{block name="title"}<title>个人信息 - {$Think.config.site.systemname}</title>{/block}
+
+{block name="content"}
+<div class="g_6 contents_header">
+    <h3 class="tab_label"><span class="icon icon-user-tie"></span> 个人信息</h3>
+    <div><span class="label">Personal information</span></div>
+</div>
+<div class="g_6 contents_options">
+    <div class="simple_buttons">
+        <div class="btnIcon"><span class="icon icon-bullhorn"> </span><a href="http://www.kancloud.cn/thinkblog/thinkblog/222147" target="_blank">帮助文档</a></div>
+    </div>    
+</div>
+
+<div class="g_12 separator"><span></span></div>
+
+
+<div class="g_12">
+    <div class="widget_header">
+        <h4 class="widget_header_title"><span class="icon icon-user-tie"></span> 编辑信息</h4>
+    </div>
+    <div class="widget_contents noPadding">
+        <form action="{:url('home/profile/saveinfo')}" method="post" />
+            <div class="line_grid">
+                <div class="g_3"><span class="label">登录名 <span class="must">*</span></span></div>
+                <div class="g_6">
+                    <input type="text" value="{$info.m_email}" disabled="disabled" class="simple_field" />
+                    <div class="field_notice">不允许修改</div>
+                </div>
+            </div>
+            <div class="line_grid">
+                <div class="g_3"><span class="label">姓名 <span class="must">*</span></span></div>
+                <div class="g_6">
+                    <input type="text" name="m_name" value="{$info.m_name}" class="simple_field" required />
+                </div>
+            </div>
+            <div class="line_grid">
+                <div class="g_3"><span class="label">称谓 <span class="must">*</span></span></div>
+                <div class="g_6">
+                    <input class="simple_form" type="radio" name="m_gender" value="先生" {eq name="info['m_gender']" value="先生"}checked{/eq} /><span class="label ilC">先生</span>
+                    <input class="simple_form" type="radio" name="m_gender" value="女士" {eq name="info['m_gender']" value="女士"}checked{/eq} /><span class="label ilC">女士</span>
+                    <input class="simple_form" type="radio" name="m_gender" value="小姐" {eq name="info['m_gender']" value="小姐"}checked{/eq} /><span class="label ilC">小姐</span>
+                </div>
+            </div>
+            <div class="line_grid">
+                <div class="g_3"><span class="label">身份证号 </span></div>
+                <div class="g_6">
+                    <input type="text" name="m_card" value="{$info.m_card}" class="simple_field" />
+                </div>
+            </div>
+            <div class="line_grid">
+                <div class="g_3"><span class="label">手机 </span></div>
+                <div class="g_9">
+                    <input type="text" name="m_mobile" value="{$info.m_mobile}" class="simple_field"/>
+                </div>
+            </div>            
+            <div class="line_grid">
+                <div class="g_3"><span class="label">单位名称 </span></div>
+                <div class="g_6">
+                    <input type="text" name="m_comapny" value="{$info.m_comapny}" class="simple_field"/>
+                </div>
+            </div>
+            <div class="line_grid">
+                <div class="g_3"><span class="label">部门 </span></div>
+                <div class="g_6">
+                    <input type="text" name="m_department" value="{$info.m_department}" class="simple_field" />
+                </div>
+            </div>
+            <div class="line_grid">
+                <div class="g_3"><span class="label">职务 </span></div>
+                <div class="g_6">
+                    <input type="text" name="m_title" value="{$info.m_title}" class="simple_field" />
+                </div>
+            </div>
+            <div class="line_grid">
+                <div class="g_3"><span class="label">省、城市</span></div>
+                <div class="g_9">
+                    <select id="m_province" name="m_province" class="simple_form" onchange="javascript:selectcity()">
+                        <option value="" >请选择省份</option>
+                        {volist name="province" id="vo"}
+                        <option value="{$vo['charProvince']}" <?php if($vo['charProvince']==$info['m_province']) { echo 'selected="selected"';} ?> >{$vo['charProvince']}</option> 
+                        {/volist}
+                    </select>
+                    <select id="m_city" name="m_city" class="simple_form"  onchange="javascript:selectcityinfo()">
+                        <option value="">选择城市...</option> 
+                        {notempty name="info['m_city']"}
+                        <option value="{$info['m_city']}" selected="selected">{$info['m_city']}</option>
+                        {/notempty}
+                    </select>
+                </div>
+            </div>
+            <div class="line_grid">
+                <div class="g_3"><span class="label">通讯地址 </span></div>
+                <div class="g_6">
+                    <input type="text" name="m_address" value="{$info.m_address}" class="simple_field" />
+                </div>
+            </div>
+            <div class="line_grid">
+                <div class="g_3"><span class="label">邮编 </span></div>
+                <div class="g_6">
+                    <input type="text" name="m_zipcode" value="{$info.m_zipcode}" id="m_zipcode" class="simple_field" />
+                </div>
+            </div> 
+            <div class="line_grid">
+                <div class="g_3"><span class="label">电话 </span></div>
+                <div class="g_6">
+                    <input type="text" name="m_phone" value="{$info.m_phone}" id="m_phone" class="simple_field"  />
+                </div>
+            </div>            
+            <div class="line_grid">
+                <div class="g_3"><span class="label">传真 </span></div>
+                <div class="g_6">
+                    <input type="text" name="m_fax" value="{$info.m_fax}" id="m_fax" class="simple_field" />                    
+                </div>
+            </div>           
+            <div class="line_grid">
+                <div class="g_3"></div>
+                <div class="g_9">
+                    <input type="submit" value="保存信息" class="submitIt simple_buttons" />
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<script type="text/javascript">
+$(document).ready(function() {
+    
+});
+    //选择城市
+function selectcity(){
+     var provinces = $("#m_province").val();
+     $.post("{:url('Base/getCityList')}",{provinces:provinces},function(json){
+            $("#m_city option").remove();
+            $("#m_city").append("<option value=''>选择城市…</option>");
+            $.each(json.data,function(i){
+                    $("#m_city").append("<option phone='"+json.data[i].charPhoneCode+"' zip='"+json.data[i].charPostCode+"' value='"+json.data[i].charCity+"'>"+json.data[i].charCity+"</option>");
+            });
+     });	 
+}
+
+//选择城市信息之后的改动
+function selectcityinfo(){		 
+    var phonecode = $("#m_city").find("option:selected").attr("phone");
+    var zipcode = $("#m_city").find("option:selected").attr("zip");
+    $("#m_phone").val("0"+phonecode+"-");
+    $("#m_fax").val("0"+phonecode+"-");
+    $("#m_zipcode").val(zipcode);
+	 
+}
+
+
+</script>
+{/block}

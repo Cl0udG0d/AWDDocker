@@ -1,0 +1,8 @@
+version: "2"
+services:
+
+   web3:
+     build: .
+     restart: always
+     ports:
+       - "8003:8000"

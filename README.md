@@ -4,3 +4,4 @@
 ### 来源
 
 + https://github.com/mo-xiaoxi/AWD_CTF_Platform
++ https://github.com/susers/tinyAWD_chals

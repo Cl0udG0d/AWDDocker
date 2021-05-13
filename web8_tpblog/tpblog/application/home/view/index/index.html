@@ -1,0 +1,94 @@
+{extend name="layout" /}
+
+{block name="title"}<title>信息概览 - {$Think.config.site.systemname}</title>{/block}
+
+{block name="content"}
+<div class="g_6 contents_header">
+        <h3 class="tab_label"><span class="icon icon-newspaper"></span> 信息概览</h3>
+        <div><span class="label">General Informations and Resume</span></div>
+</div>
+<div class="g_6 contents_options">
+        <div class="simple_buttons">
+                <div class="btnIcon"><span class="icon icon-bullhorn"> </span><a href="http://www.kancloud.cn/thinkblog/thinkblog/221795" target="_blank">帮助文档</a></div>
+        </div>        
+</div>
+
+<div class="g_12 separator"><span></span></div>
+
+<!-- Quick Statistics -->
+<div class="g_3 quick_stats">
+        <div class="big_stats visitor_stats">
+                {$c_articles}
+        </div>
+        <h5 class="stats_info">文章</h5>
+</div>
+<div class="g_3 quick_stats">
+        <div class="big_stats tickets_stats">
+                {$c_link}
+        </div>
+        <h5 class="stats_info">链接</h5>
+</div>
+<div class="g_3 quick_stats">
+        <div class="big_stats users_stats">
+                {$c_category}
+        </div>
+        <h5 class="stats_info">分类</h5>
+</div>
+<div class="g_3 quick_stats">
+        <div class="big_stats orders_stats">
+                {$c_option}
+        </div>
+        <h5 class="stats_info">配置项</h5>
+</div>
+
+<!-- Separator -->
+<div class="g_12 separator"><span></span></div>
+<!-- Chats -->
+<div class="g_6">
+        <div class="widget_header">
+                <h4 class="widget_header_title"><span class="icon icon-database"></span> 服务器环境</h4>
+        </div>
+        <div class="widget_contents noPadding">
+            {volist name="server" id="vo" key="k"}
+            <div class="line_grid">
+            	<span class="label">{$key}：{$vo} </span>	                
+            </div>
+            {/volist}
+        </div>
+</div>
+<!-- Pie Charts -->
+<div class="g_6">
+        <div class="widget_header">
+                <h4 class="widget_header_title"><span class="icon icon-users"></span> 开发团队</h4>
+        </div>
+        <div class="widget_contents noPadding">
+     		<div class="line_grid">
+            	<span class="label">开发人员：霍勇亮</span>	                
+            </div>
+            <div class="line_grid">
+            	<span class="label">个人博客：<a href="http://www.zhujianqiang.com/">猪坚强</a></span>	                
+            </div>
+            <div class="line_grid">
+            	<span class="label">帮助文档：<a href="http://www.kancloud.cn/thinkblog/thinkblog">在线文档</a></span>	                
+            </div>
+            <div class="line_grid">
+            	<span class="label">QQ交流群：455818667</span>	                
+            </div>
+            <div class="line_grid">
+            	<span class="label">版本：{$Think.config.site.version}</span>	                
+            </div>
+            <div class="line_grid">
+            	<span class="label">主机推荐：<a href="http://my.cloudleft.com/aff.php?aff=387">购买</a></span>	                
+            </div>
+            <div class="line_grid">
+            	<span class="label">&nbsp;</span>	                
+            </div>
+            <div class="line_grid">
+            	<span class="label">&nbsp;</span>	                
+            </div>
+            <div class="line_grid">
+            	<span class="label">&nbsp;</span>	                
+            </div>
+        </div>
+</div>
+{/block}

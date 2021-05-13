@@ -1,0 +1,96 @@
+{extend name="layout" /}
+
+{block name="title"}<title>配置项信息 - {$Think.config.site.systemname}</title>{/block}
+
+{block name="content"}
+<div class="g_6 contents_header">
+    <h3 class="tab_label"><span class="icon icon-equalizer"></span> 配置项信息</h3>
+    <div><span class="label">Link information</span></div>
+</div>
+<div class="g_6 contents_options">
+    <div class="simple_buttons">
+        <div class="btnIcon"><span class="icon icon-bullhorn"> </span><a href="http://www.kancloud.cn/thinkblog/thinkblog/222145" target="_blank">帮助文档</a></div>
+    </div>    
+</div>
+
+<div class="g_12 separator"><span></span></div>
+
+
+<div class="g_12">
+    <div class="widget_header">
+        <h4 class="widget_header_title"><span class="icon icon-equalizer"></span> 编辑信息</h4>
+    </div>
+    <div class="widget_contents noPadding">
+        <form action="{:url('home/option/saveinfo')}" method="post" />
+        	<input type="hidden" name="o_id" value="{$info.o_id}">
+            <div class="line_grid">
+                <div class="g_2"><span class="label">配置项标题<span class="must">*</span></span></div>
+                <div class="g_6">
+                    <input type="text" name="o_title" value="{$info.o_title}" class="simple_field" />
+                </div>
+            </div>
+            <div class="line_grid">
+                <div class="g_2"><span class="label">配置项名称<span class="must">*</span></span></div>
+                <div class="g_6">
+                    <input type="text" name="o_name" value="{$info.o_name}" class="simple_field" />
+                </div>
+            </div>
+            <div class="line_grid">
+                <div class="g_2"><span class="label">类型 <span class="must">*</span></span></div>
+                <div class="g_6">
+                    <input class="simple_form" type="radio" name="field_type" value="input" {eq name='info["o_status"]' value='input'}checked{/eq} onclick="javascript:showfieldtype();"><span class="label ilC">input</span>
+                    <input class="simple_form" type="radio" name="field_type" value="textarea" {eq name='info["o_status"]' value='textarea'}checked{/eq} onclick="javascript:showfieldtype();"><span class="label ilC">textarea</span>                    
+                    <input class="simple_form" type="radio" name="field_type" value="radio" {eq name='info["o_status"]' value='radio'}checked{/eq} onclick="javascript:showfieldtype();"><span class="label ilC">radio</span>                    
+                </div>
+            </div>
+            <div class="line_grid field_value">
+                <div class="g_2"><span class="label">类型值</span></div>
+                <div class="g_10">
+                    <input type="text" name="field_value" value="{$info.field_value}" class="simple_field" />
+                    <span class="label ilC">类型值只有在radio的情况下才需要配置,格式：1|开启,0|关闭</span>
+                </div>
+            </div>            
+            <div class="line_grid">
+                <div class="g_2"><span class="label">描述说明</span></div>
+                <div class="g_9">
+                    <input type="text" name="o_tips" value="{$info.o_tips}" class="simple_field"/>
+                </div>
+            </div>
+            <div class="line_grid">
+                <div class="g_2"><span class="label">排序 </span></div>
+                <div class="g_6">
+                    <input type="text" name="o_order" value="{$info.o_order}" class="simple_field" />
+                </div>
+            </div>
+            <div class="line_grid">
+                <div class="g_2"><span class="label">启用 </span></div>
+                <div class="g_6">                    
+                    <input type="checkbox" class="simple_form" value="1" name="o_status" {eq name="info['o_status']" value="1"}checked{/eq} />
+					<span class="label ilC">启用配置</span>
+                    
+                </div>
+            </div>
+            <div class="line_grid">
+                <div class="g_2"></div>
+                <div class="g_9">
+                    <input type="submit" value="保存信息" class="submitIt simple_buttons" />
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<script type="text/javascript">
+$(document).ready(function() {
+	showfieldtype();
+});
+
+function showfieldtype(){
+    var type = $("input[name='field_type']:checked").val();
+    if (type=='radio'){
+        $('.field_value').show();
+    } else {
+        $('.field_value').hide();
+    }
+}
+</script>
+{/block}

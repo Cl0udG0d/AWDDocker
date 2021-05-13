@@ -1,0 +1,33 @@
+FROM phusion/baseimage
+
+RUN rm -f /etc/service/sshd/down
+RUN sed -ri 's/^#?PermitRootLogin\s+.*/PermitRootLogin yes/' /etc/ssh/sshd_config
+
+RUN groupadd susers && \
+	useradd -g susers susers -m && \
+	password=$(openssl passwd -1 -salt 'abcdefg' '123456') && \
+	sed -i 's/^susers:!/susers:'$password'/g' /etc/shadow
+
+
+RUN apt-get update &&\
+        apt-get install -y php apache2 libapache2-mod-php 
+
+RUN apt-get install -y php-mysql php-curl mysql-server
+COPY database.sql /root/
+RUN rm -rf /var/run/mysqld/mysqld.sock.lock &&  service mysql start &&\
+    mysql -e "grant all privileges on *.* to 'root'@'%' identified by 'toor';"&&\
+    mysql -e "grant all privileges on *.* to 'root'@'localhost' identified by 'toor';"&&\
+    mysql -u root -ptoor -e "show databases;" &&\
+    mysql -u root -ptoor </root/database.sql &&\
+	mysql -u root -ptoor -e "show databases;"
+
+COPY tpblog /var/www/html
+ADD apache2.conf /etc/apache2/
+
+ADD ./flag /
+
+ADD ./start.sh /etc/my_init.d/
+RUN chmod u+x /etc/my_init.d/start.sh && rm -rf /var/www/html/index.html
+RUN /etc/my_init.d/00_regen_ssh_host_keys.sh
+
+CMD /etc/my_init.d/start.sh

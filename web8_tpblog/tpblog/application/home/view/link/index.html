@@ -1,0 +1,95 @@
+{extend name="layout" /}
+
+{block name="title"}<title>链接列表 - {$Think.config.site.systemname}</title>{/block}
+
+{block name="content"}
+<div class="g_6 contents_header">
+    <h3 class="tab_label"><span class="icon icon-link"></span> 链接列表</h3>
+    <div><span class="label">Link list</span></div>
+</div>
+<div class="g_6 contents_options">
+    <div class="simple_buttons">
+        <div class="btnIcon"><span class="icon icon-link"> </span><a href="http://www.kancloud.cn/thinkblog/thinkblog/222141" target="_blank">帮助文档</a></div>
+    </div>    
+    <div class="simple_buttons">
+   		<div class="btnIcon"><span class="icon icon-plus"> </span><a href="{:url('home/link/edit')}">添加链接</a></div>
+    </div>
+</div>
+
+<!-- Separator -->
+<div class="g_12 separator"><span></span></div>
+<!-- Table With Options on Header -->
+
+<div class="g_12">
+    <div class="widget_header wwOptions">
+        <h4 class="widget_header_title"><span class="icon icon-link"></span> 链接列表</h4>        
+    </div>
+    <div class="widget_contents noPadding">
+   		<form action="{:url('home/link/index')}" method="post" />
+           <div class="line_grid" style="border-bottom:1px solid #dadada">
+                   <select id="cate_id" name="cate_id" class="simple_form">
+					<option value="0">选择链接分类</option>
+					{volist name="catelist" id="vo"}
+					<option value="{$vo['cate_id']}" <?php if($vo['cate_id']==$cate_id ) { echo 'selected="selected"';} ?>>{$vo['cate_name']}</option> 
+					{/volist} 
+					</select>
+					<span class="label">链接名称:</span>
+                    <input type="text" name="link_title" value="{$link_title}" class="simple_field" style="width:350px"/>
+                   <input type="submit" value="搜索" class="submitIt simple_buttons" />
+           </div>           
+        </form>
+     	
+        <table class="datatable tables">
+            <thead>
+                <tr>
+                    <th width="50">Link_id</th>
+                    <th width="80">栏目</th>
+                    <th>链接名称</th>
+                    <th width="90">更新时间</th>
+                    <th width="120">操作管理</th>
+                </tr>
+            </thead>
+            <tbody>
+                {volist name="datalist" id="vo"}
+                <tr id="id_{$vo.link_id}">
+                    <td>{$vo.link_id}</td>
+                    <td>{$vo.cate_name}</td>
+                    <td>{$vo.link_title|mb_substr=###,0,25}</td>
+                    <td>{$vo.link_ctime|date="Y-m-d",###}</td>
+                    <td>
+                    	<div class="simple_buttons sbtnIcon">
+                    	<a href="{:url('home/link/edit',['link_id'=>$vo.link_id])}"><span class="icon icon-pencil"> </span>编辑</a>
+                    	</div>
+                    	<div class="simple_buttons sbtnIcon">
+                    	<a href="javascript:removeinfo({$vo.link_id});"><span class="icon icon-bin"> </span>删除</a>
+                    	</div>
+                    </td>
+                </tr>
+                {/volist}                
+            </tbody>
+        </table>
+    </div>
+    <div class="widget_contents dtBottom">
+        {$datalist->render()}            
+    </div>
+</div>
+<script type="text/javascript">
+//删除分类
+function removeinfo(id){
+    layer.confirm('您确定要删除这条信息吗？',{
+        btn:['确定','取消']
+    },function(){            
+        $.getJSON("{:url('home/link/removeinfo')}",{'link_id':id},function(data){
+        	//console.log(data.status);
+           if(data.status==0){
+               layer.msg(data.msg,{icon:1});
+               $("#id_"+id).empty();
+           }else{
+               layer.msg(data.msg,{icon:2});
+           }
+        });
+    },function(){}
+    );
+}
+</script>
+{/block}

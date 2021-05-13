@@ -1,0 +1,58 @@
+{extend name="layout" /}
+
+{block name="title"}<title>密码修改 - {$Think.config.site.systemname}</title>{/block}
+
+{block name="content"}
+<div class="g_6 contents_header">
+    <h3 class="tab_label"><span class="icon icon-key2"></span> 密码修改</h3>
+    <div><span class="label">Password modification</span></div>
+</div>
+<div class="g_6 contents_options">
+    <div class="simple_buttons">
+        <div class="btnIcon"><span class="icon icon-bullhorn"> </span><a href="http://www.kancloud.cn/thinkblog/thinkblog/222148" target="_blank">帮助文档</a></div>
+    </div>
+</div>
+
+<div class="g_12 separator"><span></span></div>
+
+
+<div class="g_12">
+    <div class="widget_header">
+        <h4 class="widget_header_title"><span class="icon icon-key2"></span> 密码修改</h4>
+    </div>
+    <div class="widget_contents noPadding">
+        <form action="{:url('home/profile/savepsw')}" method="post" />
+            <div class="line_grid">
+                <div class="g_3"><span class="label">原始密码 <span class="must">*</span></span></div>
+                <div class="g_6">
+                    <input type="password" name="m_pswold" value="" class="simple_field" required />
+                </div>
+            </div>
+            <div class="line_grid">
+                <div class="g_3"><span class="label">新密码 <span class="must">*</span></span></div>
+                <div class="g_6">
+                    <input type="password" name="m_psw" value="" class="simple_field" required />
+                </div>
+            </div>
+            <div class="line_grid">
+                <div class="g_3"><span class="label">确认密码 <span class="must">*</span></span></div>
+                <div class="g_6">
+                    <input type="password" name="m_pswre" value="" class="simple_field" required />
+                </div>
+            </div>
+            <div class="line_grid">
+                <div class="g_3"></div>
+                <div class="g_9">
+                    <input type="submit" value="保存信息" class="submitIt simple_buttons" />
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<script type="text/javascript">
+$(document).ready(function() {
+    
+});
+  
+</script>
+{/block}

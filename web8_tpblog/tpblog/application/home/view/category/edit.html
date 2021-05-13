@@ -1,0 +1,107 @@
+{extend name="layout" /}
+
+{block name="title"}<title>分类信息 - {$Think.config.site.systemname}</title>{/block}
+
+{block name="content"}
+<div class="g_6 contents_header">
+    <h3 class="tab_label"><span class="icon icon-tree"></span> 分类信息</h3>
+    <div><span class="label">Category information</span></div>
+</div>
+<div class="g_6 contents_options">
+    <div class="simple_buttons">
+        <div class="btnIcon"><span class="icon icon-bullhorn"> </span><a href="http://www.kancloud.cn/thinkblog/thinkblog/222139" target="_blank">帮助文档</a></div>
+    </div>    
+</div>
+
+<div class="g_12 separator"><span></span></div>
+
+
+<div class="g_12">
+    <div class="widget_header">
+        <h4 class="widget_header_title"><span class="icon icon-tree"></span> 编辑信息</h4>
+    </div>
+    <div class="widget_contents noPadding">
+        <form action="{:url('home/category/saveinfo')}" method="post" />
+        	<input type="hidden" name="cate_id" value="{$info['cate_id']}">
+            <div class="line_grid">
+                <div class="g_3"><span class="label">分类类别<span class="must">*</span></span></div>
+                <div class="g_6">
+                    <select id="cate_mod" name="cate_mod" class="simple_form">
+					<option value="">选择类别</option> 
+					{volist name="cate_mod_arr" id="vo"}
+					<option value="{$vo['modname']}" <?php if($vo['modname']==$info['cate_mod']) { echo 'selected="selected"';} ?> >{$vo['modname']}</option> 
+					{/volist}
+					</select>
+                </div>
+            </div>
+            <div class="line_grid">
+                <div class="g_3"><span class="label">分类名称<span class="must">*</span></span></div>
+                <div class="g_6">
+                    <input type="text" name="cate_name" value="{$info.cate_name}" class="simple_field" />
+                </div>
+            </div>
+            
+            <div class="line_grid">
+                <div class="g_3"><span class="label">上级分类<span class="must">*</span></span></div>
+                <div class="g_6">
+                	<select id="root_id" name="root_id" class="simple_form">
+					<option value="0">顶级分类</option>
+					{volist name="catelist" id="vo"}
+					<option value="{$vo['cate_id']}" <?php if($vo['cate_id']==$info['root_id']) { echo 'selected="selected"';} ?> >{$vo['cate_name']}</option> 
+					{/volist} 
+					</select>
+                </div>
+            </div>
+            <div class="line_grid">
+                <div class="g_3"><span class="label">自定义URL<span class="must">*</span></span></div>
+                <div class="g_9">
+                    <input type="text" name="cate_url" value="{$info.cate_url}" class="simple_field"/>
+                </div>
+            </div>                        
+            <div class="line_grid">
+                <div class="g_3"><span class="label">排序 <span class="must">*</span></span></div>
+                <div class="g_6">
+                    <input type="text" name="cate_order" value="{$info.cate_order}" class="simple_field" />
+                </div>
+            </div>
+            <div class="line_grid">
+                <div class="g_3"><span class="label">关键词 </span></div>
+                <div class="g_6">
+                    <input type="text" name="cate_keywords" value="{$info.cate_keywords}" class="simple_field" />
+                </div>
+            </div>            
+            <div class="line_grid">
+                <div class="g_3"><span class="label">描述 </span></div>
+                <div class="g_6">
+                    <input type="text" name="cate_description" value="{$info.cate_description}" class="simple_field" />
+                </div>
+            </div>
+            <div class="line_grid">
+                <div class="g_3"><span class="label">使用模板</span></div>
+                <div class="g_6">
+                    <input type="text" name="cate_template" value="{$info.cate_template}" id="m_zipcode" class="simple_field" />
+                </div>
+            </div> 
+            <div class="line_grid">
+                <div class="g_3"><span class="label">启用 </span></div>
+                <div class="g_6">                    
+                    <input type="checkbox" class="simple_form" value="1" name="cate_status" {eq name="info['cate_status']" value="1"}checked{/eq} />
+					<span class="label ilC">启用分类</span>
+                    
+                </div>
+            </div>
+            <div class="line_grid">
+                <div class="g_3"></div>
+                <div class="g_9">
+                    <input type="submit" value="保存信息" class="submitIt simple_buttons" />
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<script type="text/javascript">
+$(document).ready(function() {
+    
+});
+</script>
+{/block}

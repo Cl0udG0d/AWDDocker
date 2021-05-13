@@ -1,0 +1,30 @@
+{% extends "layout.html" %}
+
+{% block user %}
+    <!-- 登录后的个人信息框开始 -->
+    <div class="panel panel-primary topBox" id="personalInfo">
+        <div class="panel-heading">
+            <h3 class="panel-title">个人信息</h3>
+        </div>
+        <div class="panel-body">
+            <div class="pic"><img onerror="imgError()" style="width:100px;height:140px;"></div>
+            <div class="Info">
+                <ul>
+                    <li class="text-muted">
+                        学号
+                        <div>没有学号</div>
+                    </li>
+                    <li class="text-muted">
+                        姓名
+                        <div>{{user.username}}</div>
+                    </li>
+                    <li class="text-muted">
+                        班级
+                        <div>一键退学？</div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- 登录后的个人信息框结束 -->
+{% endblock %}

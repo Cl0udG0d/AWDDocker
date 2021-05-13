@@ -1,0 +1,118 @@
+{extend name="layout" /}
+
+{block name="title"}<title>链接信息 - {$Think.config.site.systemname}</title>{/block}
+
+{block name="content"}
+<div class="g_6 contents_header">
+    <h3 class="tab_label"><span class="icon icon-link"></span> 链接信息</h3>
+    <div><span class="label">Link information</span></div>
+</div>
+<div class="g_6 contents_options">
+    <div class="simple_buttons">
+        <div class="btnIcon"><span class="icon icon-bullhorn"> </span><a href="http://www.kancloud.cn/thinkblog/thinkblog/222142" target="_blank">帮助文档</a></div>
+    </div>    
+</div>
+
+<div class="g_12 separator"><span></span></div>
+
+
+<div class="g_12">
+    <div class="widget_header">
+        <h4 class="widget_header_title"><span class="icon icon-link"></span> 编辑信息</h4>
+    </div>
+    <div class="widget_contents noPadding">
+        <form action="{:url('home/link/saveinfo')}" method="post" />
+        	<input type="hidden" name="link_id" value="{$info['link_id']}">
+            <div class="line_grid">
+                <div class="g_2"><span class="label">链接标题<span class="must">*</span></span></div>
+                <div class="g_6">
+                    <input type="text" name="link_title" value="{$info.link_title}" class="simple_field" />
+                </div>
+            </div>
+            <div class="line_grid">
+                <div class="g_2"><span class="label">所属分类 <span class="must">*</span></span></div>
+                <div class="g_6">
+                    <select id="cate_id" name="cate_id" class="simple_form">
+					<option value="0">选择链接分类</option>
+					{volist name="catelist" id="vo"}
+					<option value="{$vo['cate_id']}" <?php if($vo['cate_id']==$info['cate_id']) { echo 'selected="selected"';} ?> >{$vo['cate_name']}</option> 
+					{/volist} 
+					</select>
+                </div>
+            </div>
+            
+            <div class="line_grid">
+                <div class="g_2"><span class="label">链接描述</span></div>
+                <div class="g_10">
+                    <textarea class="simple_field" name="link_desc" style="min-height:100px;height:100px">{$info['link_desc']|htmlspecialchars_decode}</textarea>
+                </div>
+            </div>
+            <div class="line_grid">
+                <div class="g_2"><span class="label">链接</span></div>
+                <div class="g_9">
+                    <input type="text" name="link_url" value="{$info.link_url}" class="simple_field"/>
+                </div>
+            </div> 
+            <div class="line_grid">
+                <div class="g_2"><span class="label">资源</span></div>
+                <div class="g_6">
+                    <input type="text" id="link_src" name="link_src" value="{$info.link_src}" class="simple_field"/>                    
+                </div>
+                <div class="g_2">
+                    <button type="button" id="dropz" class="simple_buttons" ><span class="icon icon-upload"> </span>上传文件</button>
+                </div>
+            </div>            
+            <div class="line_grid">
+                <div class="g_2"><span class="label">排序 </span></div>
+                <div class="g_6">
+                    <input type="text" name="link_order" value="{$info.link_order}" class="simple_field" />
+                </div>
+            </div>
+            <div class="line_grid">
+                <div class="g_2"><span class="label">启用 </span></div>
+                <div class="g_6">                    
+                    <input type="checkbox" class="simple_form" value="1" name="link_status" {eq name="info['link_status']" value="1"}checked{/eq} />
+					<span class="label ilC">启用链接</span>
+                    
+                </div>
+            </div>
+            <div class="line_grid">
+                <div class="g_2"></div>
+                <div class="g_9">
+                    <input type="submit" value="保存信息" class="submitIt simple_buttons" />
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+{load href="/public/static/home/Javascript/dropzone.min.js" /}
+<script type="text/javascript">
+$(document).ready(function() {
+    //-------------------------------
+	$("#dropz").dropzone({
+		url: "{:url('home/upload/multsaveupload')}",
+		params:{"f_type":"link"},
+		//paramName：相当于元素的name属性，默认为file。
+		maxFiles: 1,
+		maxFilesize: 512,
+		addRemoveLinks:true,
+		dictRemoveFile:'删除',
+		autoDiscover:false,
+		//createImageThumbnails:false,
+		previewTemplate:'<div id="preview-template" style="display: none;"></div>',
+		acceptedFiles: ".gif,.jpg,.png,.pdf,.doc,.xls,.ppt,.docx,.xlsx,.pptx",
+		init: function() {
+			this.on("success", function(file,response) {
+				var obj = JSON.parse(response);
+				$("#link_src").val(obj[0].imgurl);
+				console.log("File: " + file.name + " uploaded,Detail: " + response);
+			});
+			this.on("removedfile", function(file) {
+				console.log("File " + file.name + "removed");
+			});
+		}
+	});
+});
+
+</script>
+{/block}

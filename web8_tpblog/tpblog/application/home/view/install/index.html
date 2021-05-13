@@ -1,0 +1,183 @@
+{__NOLAYOUT__}
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        {block name="title"}<title>控制台 - ThinkBlog</title>{/block}
+	<!--[if lt IE 9]>
+		<script src="http://libs.cdnjs.net/livingston-css3-mediaqueries-js/1.0.0/css3-mediaqueries.min.js"></script>
+		<script src="http://libs.cdnjs.net/html5shiv/3.7.3/html5shiv.min.js"></script>
+	<![endif]-->
+	<!-- The Fonts -->
+	<!--<link href="http://fonts.gmirror.org/css?family=Oswald|Droid+Sans:400,700" rel="stylesheet" />-->
+	<!-- The Main CSS File -->
+        {load href="/public/static/home/CSS/style.css" /}
+    <!-- The icomoon CSS File -->
+        {load href="/public/static/icomoon/style.css" /}
+        {load href="/public/static/icomoon/ie7/ie7.css" /}
+	<!-- jQuery -->
+        {load href="/public/static/home/Javascript/jQuery/jquery-1.7.2.min.js" /}
+	<!-- DataTables -->
+	{load href="/public/static/home/Javascript/DataTables/jquery.dataTables.min.js" /}
+	<!-- Kanrisha Script -->
+</head>
+<body>
+	<!-- Top Panel -->
+	<div class="top_panel">
+		<div class="wrapper">
+			<div class="user">				
+				<span class="icon icon-user"></span>
+				<span class="label">Welcome {$Think.session.m_name}</span>				
+			</div>
+			<div class="top_links">
+				<ul>
+					<li>
+						<a href="#">
+							<span class="icon icon-tux"></span>
+							<span class="label">QQ群：455818667</span>
+						</a>
+					</li>
+					<li>
+						<a href="http://www.zhujianqiang.com/jl">
+							<span class="icon icon-IE"></span>
+							<span class="label">个人主页</span>
+						</a>						
+					</li>
+					<li>
+						<a href="http://my.cloudleft.com/aff.php?aff=387">
+							<span class="icon icon-drawer"></span>
+							<span class="label">主机推荐</span>
+						</a>
+					</li>
+					<li>
+						<a href="http://www.kancloud.cn/thinkblog/thinkblog">
+							<span class="icon icon-magic-wand"></span>
+							<span class="label">帮助文档</span>
+						</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+
+	<header class="main_header">
+		<div class="wrapper">
+			<div class="logo">
+				<a href="{:url('home/index/index')}"><span class="icon icon-leaf"></span>ThinkBlog</a>
+			</div>
+			
+		</div>
+	</header>
+
+	<div class="wrapper contents_wrapper">
+		
+		<div class="contents" style="width: 1020px;">
+			<div class="grid_wrapper">
+			<div class="g_6 contents_header">
+			    <h3 class="tab_label"><span class="icon icon-tree"></span> 环境检测</h3>
+			    <div><span class="label">Category list</span></div>
+			</div>
+			<div class="g_6 contents_options">
+			    <div class="simple_buttons">
+			        <div class="btnIcon"><span class="icon icon-bullhorn"> </span><a href="http://www.kancloud.cn/thinkblog/thinkblog/222138" target="_blank">帮助文档</a></div>
+			    </div>			    
+			</div>
+			
+			<!-- Separator -->
+			<div class="g_12 separator"><span></span></div>
+			<!-- Table With Options on Header -->
+			
+			<div class="g_12">
+			    <div class="widget_header wwOptions">
+			        <h4 class="widget_header_title"><span class="icon icon-tree"></span> 系统环境检测</h4>        
+			    </div>
+			    <div class="widget_contents noPadding">
+			        <table class="datatable tables">
+			            <thead>
+			                <tr>
+			                    <th width="300">检测项目</th>
+								<th width="300">最低需求</th>
+								<th>当前配置</th>
+			                </tr>
+			            </thead>
+			            <tbody>
+			                {volist name="env" id="vo"}
+			                <tr>
+			                    <td>{$vo['0']}</td>
+			                    <td>{$vo['1']}</td>
+			                    <td>{$vo['2']}</td>                    
+			                </tr>
+			                {/volist}
+			            </tbody>
+			        </table>
+			    </div>    
+			</div>
+			
+			<div class="g_12">
+			    <div class="widget_header wwOptions">
+			        <h4 class="widget_header_title"><span class="icon icon-tree"></span> 文件权限检测</h4>        
+			    </div>
+			    <div class="widget_contents noPadding">
+			        <table class="datatable tables">
+			            <thead>
+			                <tr>
+			                    <th width="300">检测项目</th>
+								<th width="300">最低需求</th>
+								<th>当前配置</th>
+			                </tr>
+			            </thead>
+			            <tbody>
+			                {volist name="dirfile" id="vo"}
+			                <tr>
+			                    <td>{$vo['3']}</td>
+			                    <td>可写</td>
+			                    <td>{$vo['1']}</td>                    
+			                </tr>
+			                {/volist}
+			            </tbody>
+			        </table>
+			    </div>    
+			</div>
+			
+			<div class="g_12">
+			    <div class="widget_header wwOptions">
+			        <h4 class="widget_header_title"><span class="icon icon-tree"></span> 运行函数检测</h4>        
+			    </div>
+			    <div class="widget_contents noPadding">
+			        <table class="datatable tables">
+			            <thead>
+			                <tr>
+			                    <th width="300">函数名称</th>
+								<th width="300">运行要求</th>
+								<th>检测结果</th>
+			                </tr>
+			            </thead>
+			            <tbody>
+			                {volist name="fun" id="vo"}
+			                <tr>
+			                    <td>{$vo['0']}</td>
+			                    <td>支持</td>
+			                    <td>{$vo['1']}</td>                    
+			                </tr>
+			                {/volist}
+			            </tbody>
+			        </table>
+			    </div>    
+			</div>
+			<!-- Separator -->
+            	<div class="g_12 separator"><span></span></div>
+			</div>
+		</div>
+
+	</div>
+
+	<footer>
+		<div class="wrapper">
+			<span class="copyright">
+				{$Think.config.site.copyright}
+			</span>
+		</div>
+	</footer>
+</body>
+</html>
