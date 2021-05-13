@@ -1,0 +1,1125 @@
+<!DOCTYPE html>
+<!-- saved from url=(0031)http://elective.nuaa.edu.cn/?v2 -->
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=0.9,user-scalable=no">
+    <link rel="stylesheet" type="text/css" href="../asserts/bootstrap.min.css">
+    <script src="../asserts/jquery.js"></script>
+    <script src="../asserts/vue.js"></script>
+    <script type="text/javascript" src="../asserts/bootstrap.min.js"></script>
+    <script src="../asserts/moment.min.js"></script>
+    <title>南航选课系统</title>
+    <!--[if lt IE 10]>
+    <script>
+        alert("我们检测到你的浏览器正在使用10.0以下的IE内核，它太古老了，既不安全，也不能完美的支持新选课系统上的各项功能。如果你使用的是搜狗，猎豹，360等双核浏览器，请开启高速浏览内核（通常在地址栏右侧）。您也可以升级到更加安全快速的QQ浏览器，一劳永逸！");
+        window.location.href = "/browser.html";
+    </script><![endif]-->
+    <style type="text/css">/*主页的css*/
+    body,
+    input,
+    select,
+    textarea {
+        font-family: "Lucida Grande", "Lucida", "Lucida Sans Unicode", "Lucida Sans", "Tahoma", "Segoe UI", "Verdana", "\5FAE\8F6F\96C5\9ED1", "Microsoft YaHei", "\5B8B\4F53";
+    }
+
+
+    * {
+        padding: 0;
+        margin: 0;
+    }
+
+    /*body{
+        padding-top: 90px;
+    }*/
+
+    /*导航条开始*/
+    header .navbar-inverse {
+        background: #1e9cd9;
+        border-color: #1e9cd9;
+    }
+
+    header .navbar-inverse .navbar-brand {
+        color: rgba(255, 255, 255, 0.9);
+    }
+
+    header .navbar-inverse .navbar-brand ul {
+        display: block;
+    }
+
+    .navbar-inverse .navbar-nav > li > a {
+        color: rgba(255, 255, 255, 0.9);
+    }
+
+    /*导航条结束*/
+
+
+    .body-content {
+        margin-top: 120px;
+    }
+
+    /*面板部分开始*/
+    /*上半部分*/
+    .topBox {
+        display: block;
+        min-height: 220px;
+        transition: box-shadow 0.3s ease;
+    }
+
+    .topBox:hover {
+        box-shadow: 2px 10px 10px #999999;
+    }
+
+    .topBox .panel-body {
+        padding-top: 30px;
+        padding-left: 60px;
+        padding-bottom: 30px;
+        padding-right: 20px;
+    }
+
+    .topBox .panel-body .form-horizontal .form-group {
+        width: 235px;
+        height: 35px;
+    }
+
+    #leftTopBox .topBox {
+        border-color: #26a6c1;
+    }
+
+    #leftTopBox .topBox .panel-heading {
+        background: #26a6c1;
+        border-color: #26a6c1;
+    }
+
+    #rightTopBox .topBox {
+        border-color: #26b8ab;
+    }
+
+    #rightTopBox .topBox .panel-heading {
+        background: #26b8ab;
+        border-color: #26b8ab;
+    }
+
+    #rightTopBox .panel-body {
+        padding: 15px;
+    }
+
+    /*选课日历部分*/
+
+    .table > thead > tr > th {
+        width: 14.2857%;
+    }
+
+    .progress {
+        background: #fff;
+    }
+
+    #dateth th {
+        text-align: center;
+    }
+
+    #date tr td {
+        position: relative;
+        padding: 0;
+    }
+
+    #date tr td div.yes { /*有课程的*/
+        display: block;
+        width: 100%;
+        height: 36px;
+        line-height: 36px;
+        /*background: #7cc951;*/
+        font-size: 14px;
+        color: #fff;
+        border-radius: 5px;
+        border-left: 1px solid #dbdbdb;
+        border-right: 1px solid #dbdbdb;
+        box-shadow: none;
+        cursor: pointer;
+    }
+
+    #date tr td div.none { /*空白*/
+        display: block;
+        width: 100%;
+        height: 36px;
+        line-height: 36px;
+        box-shadow: none;
+        background-color: #fff;
+    }
+
+    #date ul {
+        display: block;
+        width: 100%;
+        height: 36px;
+        margin: 0px;
+        position: relative;
+    }
+
+    #date ul div.progress-bar {
+        display: inline-block;
+        /*list-style: none;*/
+        position: absolute;
+        overflow: hidden;
+    }
+
+
+    /*下半部分*/
+    .bottomBox {
+        display: block;
+        height: 400px;
+        transition: box-shadow 0.3s ease;
+    }
+
+    .bottomBox:hover {
+        box-shadow: 2px 10px 10px #999999;
+    }
+
+    #leftTopBox .bottomBox .panel-body .nav-pills > li > a {
+        text-align: center;
+        font-size: 14px;
+    }
+
+    #leftTopBox .bottomBox {
+        border-color: #26b8ac;
+    }
+
+    #leftTopBox .bottomBox .panel-heading {
+        background: #26b8ac;
+        border-color: #26b8ac;
+    }
+
+    #rightTopBox .bottomBox {
+        border-color: #58bf78;
+    }
+
+    #rightTopBox .bottomBox .panel-heading {
+        background: #58bf78;
+        border-color: #58bf78;
+    }
+
+
+    /*选课入口部分开始*/
+    #xk-enter {
+        display: block;
+        border-color: #66CDAA;
+        transition: box-shadow 0.3s ease;
+    }
+
+    #xk-enter:hover {
+        box-shadow: 2px 10px 10px #999999;
+    }
+
+    #xk-enter .panel-heading {
+        /*position: fixed;*/
+        background: #66CDAA;
+        border-color: #66CDAA;
+    }
+
+    #xk-enter .panel-body {
+        display: block;
+        height: 480px;
+        padding-top: 30px;
+        padding-left: 60px;
+        padding-bottom: 30px;
+        padding-right: 20px;
+        overflow: auto;
+    }
+
+    #xk-enter .panel-body h3.title {
+        margin-top: 0px;
+        margin-bottom: 10%;
+        color: #2fa4e7;
+    }
+
+    #xk-enter .panel-footer {
+        display: block;
+        height: 80px;
+        padding-left: 60px;
+        padding-right: 20px;
+        background-color: #fff;
+    }
+
+    #xk-enter .panel-footer .btn {
+        display: inline-block;
+        width: 110px;
+        height: 40px;
+        color: #fff;
+        font-size: 20px;
+        line-height: 25px;
+        margin-right: 10px;
+        margin-top: 10px;
+    }
+
+    #xk-enter .time {
+        display: inline-block;
+        height: 40px;
+        color: #FF8C00;
+        font-size: 25px;
+        margin-top: 10px;
+        margin-right: 10px;
+    }
+
+    /*选课入口部分结束*/
+
+
+    /*模态框*/
+    .modal .modal-header {
+        padding-bottom: 5px;
+        color: #317eac;
+    }
+
+    .modal .modal-body {
+        padding-top: 20px;
+        padding-left: 20px;
+        padding-right: 20px;
+        padding-bottom: 40px;
+        /*font-size: 16px;*/
+        color: #555555;
+    }
+
+
+    /*等待条*/
+    .loadingBox {
+        display: block;
+        height: 130px;
+        position: relative;
+    }
+
+    #myCanvas1 {
+        position: absolute;
+        left: 200px;
+        top: 40px;
+        animation: run1 2s linear infinite;
+    }
+
+    @keyframes run1 {
+        0% {
+            top: 40px;
+        }
+        5% {
+            top: 70px;
+        }
+        10% {
+            top: 40px;
+        }
+        15% {
+            top: 10px;
+        }
+        20% {
+            top: 40px;
+        }
+    }
+
+    #myCanvas2 {
+        position: absolute;
+        left: 240px;
+        top: 40px;
+        animation: run2 2s linear infinite;
+    }
+
+    @keyframes run2 {
+        20% {
+            top: 40px;
+        }
+        25% {
+            top: 70px;
+        }
+        30% {
+            top: 40px;
+        }
+        35% {
+            top: 10px;
+        }
+        40% {
+            top: 40px;
+        }
+    }
+
+    #myCanvas3 {
+        position: absolute;
+        left: 280px;
+        top: 40px;
+        animation: run3 2s linear infinite;
+    }
+
+    @keyframes run3 {
+        40% {
+            top: 40px;
+        }
+        45% {
+            top: 70px;
+        }
+        50% {
+            top: 40px;
+        }
+        55% {
+            top: 10px;
+        }
+        60% {
+            top: 40px;
+        }
+    }
+
+    #myCanvas4 {
+        position: absolute;
+        left: 320px;
+        top: 40px;
+        animation: run4 2s linear infinite;
+    }
+
+    @keyframes run4 {
+        60% {
+            top: 40px;
+        }
+        65% {
+            top: 70px;
+        }
+        70% {
+            top: 40px;
+        }
+        75% {
+            top: 10px;
+        }
+        80% {
+            top: 40px;
+        }
+    }
+
+    #myCanvas5 {
+        position: absolute;
+        left: 360px;
+        top: 40px;
+        animation: run5 2s linear infinite;
+    }
+
+    @keyframes run5 {
+        80% {
+            top: 40px;
+        }
+        85% {
+            top: 70px;
+        }
+        90% {
+            top: 40px;
+        }
+        95% {
+            top: 10px;
+        }
+        100% {
+            top: 40px;
+        }
+    }
+
+    /*适配手机版*/
+    @media only screen and (max-width: 768px) {
+        #myCanvas1 {
+            position: absolute;
+            left: 100px;
+            top: 40px;
+            animation: run1 2s linear infinite;
+        }
+
+        #myCanvas2 {
+            position: absolute;
+            left: 140px;
+            top: 40px;
+            animation: run2 2s linear infinite;
+        }
+
+        #myCanvas3 {
+            position: absolute;
+            left: 180px;
+            top: 40px;
+            animation: run3 2s linear infinite;
+        }
+
+        #myCanvas4 {
+            position: absolute;
+            left: 220px;
+            top: 40px;
+            animation: run4 2s linear infinite;
+        }
+
+        #myCanvas5 {
+            position: absolute;
+            left: 260px;
+            top: 40px;
+            animation: run5 2s linear infinite;
+        }
+    }
+    </style>
+    <style type="text/css">
+        /*过场动画*/
+        #loading {
+            background-color: #000;
+            height: 100%;
+            width: 100%;
+            position: fixed;
+            z-index: 2031;
+            margin-top: 0px;
+            top: 0px;
+            opacity: 0.7;
+            display: block;
+        }
+
+        #loading-center {
+            width: 100%;
+            height: 100%;
+            position: relative;
+        }
+
+        #loading-center-absolute {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            height: 200px;
+            width: 200px;
+            margin-top: -100px;
+            margin-left: -100px;
+            -ms-transform: rotate(-135deg);
+            -webkit-transform: rotate(-135deg);
+            transform: rotate(-135deg);
+        }
+
+        .object {
+
+            -moz-border-radius: 50% 50% 50% 50%;
+            -webkit-border-radius: 50% 50% 50% 50%;
+            border-radius: 50% 50% 50% 50%;
+            position: absolute;
+            border-top: 5px solid #FFF;
+            border-bottom: 5px solid transparent;
+            border-left: 5px solid #FFF;
+            border-right: 5px solid transparent;
+
+            -webkit-animation: animate 2s infinite;
+            animation: animate 2s infinite;
+
+        }
+
+        #object_one {
+            left: 75px;
+            top: 75px;
+            width: 50px;
+            height: 50px;
+        }
+
+        #object_two {
+            left: 65px;
+            top: 65px;
+            width: 70px;
+            height: 70px;
+            -webkit-animation-delay: 0.2s;
+            animation-delay: 0.2s;
+        }
+
+        #object_three {
+            left: 55px;
+            top: 55px;
+            width: 90px;
+            height: 90px;
+            -webkit-animation-delay: 0.4s;
+            animation-delay: 0.4s;
+        }
+
+        #object_four {
+            left: 45px;
+            top: 45px;
+            width: 110px;
+            height: 110px;
+            -webkit-animation-delay: 0.6s;
+            animation-delay: 0.6s;
+
+        }
+
+        @-webkit-keyframes animate {
+
+
+            50% {
+
+                -ms-transform: rotate(360deg) scale(0.8);
+                -webkit-transform: rotate(360deg) scale(0.8);
+                transform: rotate(360deg) scale(0.8);
+            }
+        }
+
+        @keyframes animate {
+
+            50% {
+
+                -ms-transform: rotate(360deg) scale(0.8);
+                -webkit-transform: rotate(360deg) scale(0.8);
+                transform: rotate(360deg) scale(0.8);
+            }
+        }
+    </style>
+    <style type="text/css">/*个人信息页面的css*/
+
+    #personalInfo .panel-body .pic {
+        display: inline-block;
+        width: 100px;
+        height: 140px;
+        background: #d2d2d2;
+    }
+
+    #personalInfo .panel-body .Info ul {
+        display: inline-block;
+        list-style: none;
+        width: 150px;
+        height: 120px;
+        position: absolute;
+        left: 200px;
+        top: 70px;
+    }
+
+    #personalInfo .panel-body .Info ul li {
+        display: block;
+        width: 150px;
+        height: 40px;
+        margin-bottom: 10px;
+        font-size: 13px;
+    }
+
+    #personalInfo .panel-body .Info ul li div {
+        font-size: 15px;
+        font-weight: 600;
+        color: #292929;
+    }</style>
+    <style type="text/css">/*设置背景*/
+
+    body {
+        background: #f0f0f0;
+    }
+
+
+    ul.bg li {
+        display: block;
+        list-style: none;
+        width: 40px;
+        height: 40px;
+        position: absolute;
+        top: 83%;
+        background: rgba(255, 255, 255, 1);
+        z-index: -1;
+    }
+
+
+    ul.bg li:nth-child(1) {
+        left: 5%;
+        animation: runSquare1 10s linear infinite;
+    }
+
+    ul.bg li:nth-child(2) {
+        left: 15%;
+        width: 80px;
+        height: 80px;
+        /*background: rgba(255,0,255,0.25);*/
+        opacity: 0;
+        animation: runSquare2 35s linear infinite;
+    }
+
+    ul.bg li:nth-child(3) {
+        left: 26%;
+        opacity: 0;
+        animation: runSquare3 22s linear infinite;
+    }
+
+    ul.bg li:nth-child(4) {
+        left: 34%;
+        width: 100px;
+        height: 100px;
+        opacity: 0;
+        animation: runSquare4 13s linear infinite;
+    }
+
+    ul.bg li:nth-child(5) {
+        left: 41%;
+        width: 20px;
+        height: 20px;
+        /*background: rgba(255,255,255,0.35);*/
+        opacity: 0;
+        animation: runSquare1 19s linear infinite;
+    }
+
+    ul.bg li:nth-child(6) {
+        left: 47%;
+        width: 160px;
+        height: 160px;
+        /*background: rgba(255,255,0,0.15);*/
+        opacity: 0;
+        animation: runSquare2 25s linear infinite;
+    }
+
+    ul.bg li:nth-child(7) {
+        left: 63%;
+        width: 76px;
+        height: 76px;
+        opacity: 0;
+        animation: runSquare3 12s linear infinite;
+    }
+
+    ul.bg li:nth-child(8) {
+        left: 70%;
+        width: 10px;
+        height: 10px;
+        /*background: rgba(255,0,255,0.35);*/
+        opacity: 0;
+        animation: runSquare1 17s linear infinite;
+    }
+
+    ul.bg li:nth-child(9) {
+        left: 74%;
+        width: 150px;
+        height: 150px;
+        /*background: rgba(255,255,255,1);*/
+        opacity: 0;
+        animation: runSquare2 30s linear infinite;
+
+    }
+
+    ul.bg li:nth-child(10) {
+        left: 90%;
+        animation: runSquare3 10s linear infinite;
+        /*background: rgba(255,255,255,1);	*/
+        opacity: 0;
+    }
+
+    /*动画  默认*/
+    @keyframes runSquare1 {
+        0% {
+            transform: scale(1) translateY(0px);
+            opacity: 0;
+        }
+        5% {
+            opacity: 1;
+        }
+        /*50%{opacity: 0;}*/
+        100% {
+            transform: scale(1.5) translateY(-800px) rotate(600deg);
+        }
+    }
+
+    /*动画2  小的*/
+    @keyframes runSquare2 {
+        0% {
+            opacity: 0;
+        }
+        15% {
+            transform: scale(1) translateY(0px);
+            opacity: 0;
+        }
+        20% {
+            opacity: 1;
+        }
+        /*50%{transform: scale(1) translateY(0px);opacity: 0;}*/
+        100% {
+            transform: scale(2) translateY(-800px) rotate(1200deg);
+        }
+    }
+
+    /*动画2  中等的*/
+    @keyframes runSquare3 {
+        0% {
+            opacity: 0;
+        }
+        10% {
+            transform: scale(1) translateY(0px);
+            opacity: 0;
+        }
+        15% {
+            opacity: 1;
+        }
+        /*60%{opacity: 0;}*/
+        100% {
+            transform: scale(0.8) translateY(-1200px) rotate(200deg);
+        }
+    }
+
+    /*动画2  大的*/
+    @keyframes runSquare4 {
+        0% {
+            transform: scale(1) translateY(0px);
+            opacity: 0;
+        }
+        5% {
+            opacity: 1;
+        }
+        /*35%{opacity: 0;}*/
+        100% {
+            transform: scale(0.7) translateY(-1000px) rotate(800deg);
+        }
+    }</style>
+</head>
+<body>
+<!-- 背景图开始 -->
+<ul class="bg">
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+</ul>
+<!-- 背景图结束 -->
+
+
+<!-- 导航条开始 -->
+<header>
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <a href="http://elective.nuaa.edu.cn/index.html" class="navbar-brand">男航选课系统BetaBetaBetaBeta</a>
+            </div>
+            <ul class="nav navbar-nav nav-pills navbar-right" id="navbar">
+                {% if current_user %}
+                <div class="navbar-brand">{{user.username}}</div>
+                <li><a href="{{url_for('users.logout')}}" onclick="logout()">注销</a></li>
+                {% else %}
+                <li></li>
+                {% endif %}
+            </ul>
+        </div>
+    </nav>
+</header>
+<!-- 导航条结束 -->
+
+<div class="body-content container">
+    <div class="row">
+        <div class="col-md-4" id="leftTopBox">
+
+            {% block login %}{% endblock %}
+
+            <!-- 未登录Error的模态框 -->
+            <div class="modal fade" id="loginError">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <span class="close" data-dismiss="modal">×</span>
+                            <h4 class="modal-title">Error</h4>
+                        </div>
+                        <div class="modal-body">你还未登录!</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 用户名或密码错误的模态框 -->
+            <div class="modal fade" id="ErrorUserPassword">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <span class="close" data-dismiss="modal">×</span>
+                            <h4 class="modal-title">Error</h4>
+                        </div>
+                        <div class="modal-body">用户名或密码错误!</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 登录后的个人信息框开始 -->
+            {% block user %}{% endblock %}
+            <!-- 登录后的个人信息框结束 -->
+
+            <!-- 选课链接开始 -->
+            <div class="panel panel-primary bottomBox">
+                <div class="panel-heading">
+                    <h3 class="panel-title">快速链接</h3>
+                </div>
+                <div class="panel-body">
+                    <ul class="nav nav-pills nav-stacked">
+                        <li><a href="xk/bx" class="必修课 goclass">必修课</a></li>
+                        <li><a href="xk/whszk" class="文化素质课 goclass">文化素质课</a></li>
+                        <li><a href="xk/xktzk" class="学科拓展课 goclass">学科拓展课</a></li>
+                        <li><a href="xk/tyzxk" class="体育专项课 goclass">体育专项课</a></li>
+                        <li><a href="xk/xsytk" class="新生研讨课 goclass">新生研讨课</a></li>
+                        <li><a href="xk/ggxxk" class="公共选修课 goclass">公共选修课</a></li>
+                        <li><a href="xk/zxkfk" class="在线开放课 goclass">在线开放课</a></li>
+                        <li><a href="xk/sqkc" class="暑期国际课程 goclass">暑期课程</a></li>
+                    </ul>
+                </div>
+            </div>
+            <!-- 选课链接结束 -->
+        </div>
+
+        <!-- 选课日历开始 -->
+        <div class="col-md-8" id="rightTopBox">
+            <div class="panel panel-primary topBox" id="calendar_div" style="height: 220px;">
+                <div class="panel-heading">
+                    <h3 class="panel-title ">选课日历</h3>
+                </div>
+                <div class="panel-body text-center">
+
+                    <!-- 等待条开始 -->
+                    <div class="loadingBox hide">
+                        <canvas id="myCanvas1" width="30" height="30">
+                            Your browser does not support the canvas element.
+                        </canvas>
+                        <canvas id="myCanvas2" width="30" height="30">
+                            Your browser does not support the canvas element.
+                        </canvas>
+                        <canvas id="myCanvas3" width="30" height="30">
+                            Your browser does not support the canvas element.
+                        </canvas>
+                        <canvas id="myCanvas4" width="30" height="30">
+                            Your browser does not support the canvas element.
+                        </canvas>
+                        <canvas id="myCanvas5" width="30" height="30">
+                            Your browser does not support the canvas element.
+                        </canvas>
+                    </div>
+                    <!-- 等待条结束 -->
+
+                    <!-- 选课信息开始 -->
+                    <table class="table" id="calendar">
+                        <thead>
+                        <tr id="dateth">
+                            <th style="color: #bbbbbb">周四</th>
+                            <th style="color: #aaaaaa">昨天</th>
+                            <th style="color: #2780E3">今天</th>
+                            <th style="color: #3F8FE8">明天</th>
+                            <th style="color: #449BFC">周一</th>
+                            <th style="color: #5DA8FC">周二</th>
+                            <th style="color: #61BAFF">周三</th>
+                        </tr>
+                        </thead>
+                        <tbody id="date">
+                        <tr class="progress">
+                            <td colspan="7">
+                                <ul>
+                                </ul>
+                            </td>
+
+                        </tr>
+                        <tr class="progress">
+                            <td colspan="7">
+                                <ul>
+
+                                </ul>
+                            </td>
+
+                        </tr>
+                        </tbody>
+                        <tfoot>
+                        <tr>
+                            <td colspan="7">今天有&nbsp;<b class="text-success" id="nowplc">2147483647</b>&nbsp;项选课正在进行，点击左侧进行快速连接选课</td>
+                        </tr>
+                        </tfoot>
+                    </table>
+                    <!-- 选课信息结束 -->
+                </div>
+            </div>
+            <!-- 选课日历结束-->
+
+            <!-- 通知开始 -->
+            <div class="panel panel-primary bottomBox" id="info_page">
+                <div class="panel-heading">
+                    <h3 class="panel-title">最新通知</h3>
+                </div>
+                <div class="panel-body">
+                    <ul class="nav nav-pills nav-stacked">
+                        <li>
+                            <a href="http://157.0.149.28/rpcs.myapp.com/myapp/rcps/d/85000/QQBrowser_Setup_9.2.5170.402_9.2.exe?mkey=5941c6a1c1c07685&amp;f=9502&amp;c=0&amp;fsname=QQBrowser_subid@100581_urlid@100581.exe&amp;p=.exe">登录超时、列表空白等问题请更换浏览器尝试
+                                <span class="pull-right">06月15日</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">建议使用电脑选课，未来将支持掌上教务App手机选课
+                                <span class="pull-right">09月14日</span>
+                            </a>
+                        </li>
+                        <li id="helpChoose">
+                            <a href="http://mp.weixin.qq.com/s?__biz=MzA3MTg4NjE3MQ==&amp;mid=2650724039&amp;idx=1&amp;sn=e7de1cbe4ad7113f7bbb9a1a064fbbef&amp;chksm=872cc2f3b05b4be526f20d5984d15e7b44007a08a0cac91f3ff7dfc6b0f75ad3d12c01106f71&amp;mpshare=1&amp;scene=23&amp;srcid=0929hsKrbxHv0NwF6CeeWF5T#rd"
+                               target="_blank">内网选课教程
+                                <span class="pull-right">09月29日</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <!-- 通知结束 -->
+
+            <!-- 每一个选课的入口开始 -->
+            <div class="panel panel-primary hide" id="xk-enter">
+                <div class="panel-heading">
+                    <h3 class="panel-title"></h3>
+                </div>
+                <div class="panel-body">
+                    <h3 class="text-center title"></h3>
+                    <h4>选课通知:</h4>
+
+                </div>
+                <div class="panel-footer">
+                    <div class="time">
+
+                    </div>
+
+                    <a href="http://elective.nuaa.edu.cn/index.html" class="btn btn-primary pull-right hide">返回</a>
+                </div>
+            </div>
+            <!-- 每一个选课的入口结束 -->
+        </div>
+    </div>
+</div>
+<hr>
+
+<!-- 等待界面开始 -->
+<div id="loading" class="hide">
+    <div id="loading-center">
+        <div id="loading-center-absolute" v-show="!finish">
+            <div class="object" id="object_four"></div>
+            <div class="object" id="object_three"></div>
+            <div class="object" id="object_two"></div>
+            <div class="object" id="object_one"></div>
+        </div>
+    </div>
+</div>
+<!-- 等待界面结束 -->
+
+<!-- 服务器交互错误开始 -->
+<div class="modal fade" id="errorModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <span class="close" data-dismiss="modal">×</span>
+                <h4 class="modal-title">Error</h4>
+            </div>
+            <div class="modal-body"></div>
+            <div class="modal-footer">
+                <a href="#" class="btn btn-danger pull-right" data-toggle="modal"
+                   data-target="#errorModal">了解</a>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- 服务器交互错误结束 -->
+
+<!-- 警告开始 -->
+<div class="modal fade" id="warningModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <span class="close" data-dismiss="modal">×</span>
+                <h4 class="modal-title">Error</h4>
+            </div>
+            <div class="modal-body"></div>
+            <div class="modal-footer">
+                <a href="#" onclick="logout()" class="btn btn-danger pull-right"
+                   data-toggle="modal" data-target="#warningModal">了解</a>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- 警告结束 -->
+
+<!-- 没课警告开始 -->
+<div class="modal fade" id="noClassModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <span class="close" data-dismiss="modal">×</span>
+                <h4 class="modal-title">Error</h4>
+            </div>
+            <div class="modal-body"></div>
+            <div class="modal-footer">
+                <a href="#" class="btn btn-danger pull-right" data-toggle="modal"
+                   data-target="#noClassModal">了解</a>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- 没课警告结束 -->
+
+<!-- 没课警告开始 -->
+<div class="modal fade" id="doubleClassModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <span class="close" data-dismiss="modal">×</span>
+                <h4 class="modal-title">提示</h4>
+            </div>
+            <div class="modal-body"></div>
+            <div class="modal-footer">
+                <a href="#" class="btn btn-danger pull-right" data-toggle="modal"
+                   data-target="#doubleClassModal">返回</a>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- 没课警告结束 -->
+
+<footer class="text-center">
+    <div>南航选课系统</div>
+    <div>
+        Produced By <a href="#" data-toggle="modal" data-target="#aboutUs">Extra Team</a>
+    </div>
+    <div>Copyright © 2017 NUAA. All Rights Reserved.</div>
+</footer>
+<!-- footer的modal框 -->
+<div class="modal fade" id="aboutUs" tabindex="-1" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <span class="close" data-dismiss="modal">×</span>
+                <h4 class="modal-title">关于Extra Team</h4>
+            </div>
+            <div class="modal-body">
+                <p>Extra Team 是由南航学生组成的一支创新团队，如果你对WEB开发有兴趣或者特长，欢迎加入我们。</p>
+                <p>QQ: <a href="http://wpa.qq.com/msgrd?v=3&amp;uin=1304445713&amp;site=qq&amp;menu=yes"
+                          target="_blank">18115167573</a></p>
+                <br>
+                <br>
+                <h4>选课系统开发成员: </h4>
+                <p>
+                    Program Manager:
+                    <a href="http://www.jubeat.net/">PM_Extra</a>
+                </p>
+                <p>
+                    Server Programmer:
+                    <a href="http://halelu.github.io/">Hale Lu</a>
+                </p>
+                <p>
+                    Web front-end Programmer:
+                    <a href="http://wpa.qq.com/msgrd?v=3&amp;uin=346747619">wiwry</a>&nbsp;&nbsp;&nbsp;
+                    <a href="http://wpa.qq.com/msgrd?v=3&amp;uin=291371205">丶Ｋ１Ｄ￣━</a>
+                </p>
+                <p>
+                    Art Designer:
+                    <a href="http://wpa.qq.com/msgrd?v=3&amp;uin=657336523">alleaseg</a>
+                </p>
+                <p>
+                    Other Developer:
+                    <a href="http://wpa.qq.com/msgrd?v=3&amp;uin=744953269">wtof1996</a>&nbsp;&nbsp;&nbsp;
+                    <a href="http://wpa.qq.com/msgrd?v=3&amp;uin=641133297legend94rz">ds_lj</a> &nbsp;&nbsp;&nbsp;
+                    <a href="http://wpa.qq.com/msgrd?v=3&amp;uin=1092944576">legend94rz</a>&nbsp;&nbsp;&nbsp;
+                    <a href="http://wpa.qq.com/msgrd?v=3&amp;uin=745304919">gaojs</a>&nbsp;&nbsp;&nbsp;
+                    <a href="http://wpa.qq.com/msgrd?v=3&amp;uin=2225233704">XM</a>&nbsp;&nbsp;&nbsp;
+                    <a href="http://wpa.qq.com/msgrd?v=3&amp;uin=286911821">Windows Cirno</a>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    $(function () {
+        $.ajax({
+            type: "GET",
+            cache: false,
+            url: "./version/hash.json",
+            success: function (data) {
+                console.log(data.hash);
+                var version = data.hash;
+                var jsSrc = "./index." + version + ".js";
+                $("#indexjs").attr("src", jsSrc);
+            }
+        });
+    });
+</script>
+<script id="indexjs" src="/asserts/index.js"></script>
+
+</body>
+</html>

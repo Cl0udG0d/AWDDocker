@@ -1,0 +1,9 @@
+<IfModule mod_rewrite.c>
+Options +FollowSymlinks
+RewriteEngine On
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^(.*)$ index.php [L,QSA,E=PATH_INFO:$1]
+#RewriteCond %{SCRIPT_FILENAME} \.php [NC]
+#RewriteRule "public/" '' [R=403,L]
+</IfModule>
