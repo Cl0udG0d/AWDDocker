@@ -14,7 +14,7 @@ RUN sed -i "s/http:\/\/archive.ubuntu.com/http:\/\/mirrors.aliyun.com/g" /etc/ap
     rm -f /var/www/html/* && \
     chown www-data:www-data /var/www/html/ -R && \
     useradd ctf && \
-    echo ctf:moxiaoxi666 | chpasswd && \
+    echo ctf:test123 | chpasswd && \
     sleep 2
 
 COPY ./html/index.php /var/www/html/
