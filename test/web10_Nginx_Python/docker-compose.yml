@@ -1,7 +1,0 @@
-version: "3"
-services:
-    b2:
-        build: .
-        ports:
-            - "18890:80"
-            - "18891:22"
